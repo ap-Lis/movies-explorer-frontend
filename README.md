@@ -1,1 +1,17 @@
-# movies-explorer-frontend
+# Проект: movies-exlorer-frontend
+
+**Проект**  
+Диплом. Верска.
+Выбранный макет: 
+
+**Истользуемые технологии**
+* html
+* css
+* js
+* react
+
+**Документация**  
+#tbd
+
+**Установка**  
+#tbd

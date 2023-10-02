@@ -1,0 +1,36 @@
+.navtab{
+    min-height: 66px;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    background: #F5F5F5;
+    justify-content: center;
+    align-items: center;
+}
+
+.navtab__links{
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 40px;
+}
+
+.navtab__link{
+    color: #000;
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+@media screen and (max-width: 320px) {
+    .navtab__link{
+        font-size: 11px;
+    }
+
+    .navtab__links{
+        gap: 24px;
+    }
+}
