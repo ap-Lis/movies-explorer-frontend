@@ -36,6 +36,11 @@
     align-self: flex-end;
     margin: 22px 22px 0 0;
     cursor: pointer;
+    transition: opacity 1s;
+}
+
+.navigation__close-button:hover{
+    opacity: 0.5;
 }
 
 .navigation__links-container{
@@ -57,6 +62,11 @@
     line-height: normal;
     text-decoration: none;
     padding-bottom: 4px;
+    transition: opacity 1s;
+}
+
+.navigation__link:hover{
+    opacity: 0.5;
 }
 
 .navigation__link_type_highlighted{
@@ -80,6 +90,11 @@
     font-weight: 500;
     line-height: 16px;
     cursor: pointer;
+    transition: opacity 1s;
+}
+
+.navigation__account-button:hover{
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 320px) {

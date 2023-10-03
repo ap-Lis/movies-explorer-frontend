@@ -24,7 +24,7 @@ function MoviesCard({card, onCardLike, savedCards, onCardDelete }) {
                 <h2 className='movies-card__caption'>{card.nameRU}</h2>
                 {
                     isMovies ?
-                        <button className={`movies-card__like-button ${isLiked && `movies-card__like-button_color_green`}`} type="button" aria-label="Лайк" onClick={handleCardLike} />
+                        <button className={`movies-card__like-button ${isLiked ? `movies-card__like-button_color_green`:``}`} type="button" aria-label="Лайк" onClick={handleCardLike} />
                         :
                         <button className="movies-card__delete-button" type="button" aria-label="Удалить" onClick={handleCardDelete} />
                 }

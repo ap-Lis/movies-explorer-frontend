@@ -15,7 +15,6 @@
     max-width: 270px;
     width: 100%;
     height: 151px;
-    width: 100%;
     object-fit: cover;
     display: block;
     background-color: #000000;
@@ -27,7 +26,7 @@
     justify-content: space-between;
     margin: 14px 12px 0 12px;
     max-width: 246px;
-    width: 100%;
+    
 }
 
 .movies-card__caption{
@@ -53,6 +52,11 @@
     cursor: pointer;
     box-shadow: 0 2px 2px grey;
     padding: 0;
+    transition: opacity 1s;
+}
+
+.movies-card__like-button:hover{
+    opacity: 0.5;
 }
 
 .movies-card__like-button_color_green{
@@ -77,6 +81,11 @@
     max-height: 16px;
     cursor: pointer;
     padding: 0;
+    transition: opacity 1s;
+}
+
+.movies-card__delete-button:hover{
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 768px) {

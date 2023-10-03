@@ -25,6 +25,12 @@
     .techs-card__text{
         font-size: 12px;
     }
+
+    .techs-card{
+        max-width: 84px;
+        width: 100%;
+        min-height: 57px;
+    }
 }
 
 @media screen and (max-width: 320px) {

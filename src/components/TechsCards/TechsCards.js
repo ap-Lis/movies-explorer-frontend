@@ -4,9 +4,9 @@ import './TechsCards.css';
 function TechsCards({title}) {
 
     return (
-        <div className='techs-card'>
+        <li className='techs-card'>
             <p className='techs-card__text'>{title}</p>
-        </div>
+        </li>
     );
   }
     

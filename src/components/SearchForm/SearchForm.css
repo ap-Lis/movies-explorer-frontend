@@ -1,3 +1,8 @@
+.search{
+    width: calc(100% - 50px);
+    display: flex;
+    justify-content: space-evenly;
+}
 .search-form{
     display: flex;
     flex-wrap: wrap;
@@ -8,6 +13,7 @@
     width: 100%;
     margin: 60px 0 0 0;
     border-bottom: 1px solid #E8E8E8;
+    box-sizing: border-box;
 }
 
 .search-form__input{
@@ -29,6 +35,15 @@
     width: 100%;
 }
 
+.search-form__input_color_red{
+    color: #EE3465;
+}
+
+.search-form__input:focus{
+    box-shadow: 0 2px 2px grey;
+    outline:solid 0.1px #ff6638;
+}
+
 .search-form__submit-button{
     position: absolute;
     right: 6px;
@@ -38,6 +53,17 @@
     width: 80px;
     height: 34px;
     border-radius: 40px;
+    cursor: pointer;
+    transition: opacity 1s;
+}
+
+.search-form__submit-button:hover:enabled{
+    opacity: 0.5;
+}
+
+.search-form__submit-button_type_disabled{
+    background-color: #929292;
+    cursor: default;
 }
 
 .search-form__switch-container{
@@ -52,6 +78,11 @@
     width: 36px;
     height: 20px;
     align-self: center;
+    transition: opacity 1s;
+}
+
+.search-form__switch:hover{
+    opacity: 0.5;
 }
 
 .search-form__switch .search-form__checkbox {
@@ -117,7 +148,7 @@
 @media screen and (max-width: 768px) {
     .search-form{
         margin: 80px 0 0 0;
-        max-width: 708px;
+        max-width: 768px;
     }
 
     .search-form__switch-container{
@@ -127,10 +158,14 @@
 
 @media screen and (max-width: 320px) {
     .search-form{
-        max-width: 292px;
+        max-width: 320px;
     }
 
     .search-form__switch-container{
         margin: 42px 0 51px 0;
+    }
+
+    .search-form__checkbox-label{
+        font-size: 11px;
     }
 }

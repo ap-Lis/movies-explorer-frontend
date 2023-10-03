@@ -23,6 +23,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
+    transition: opacity 1s;
+}
+
+.navtab__link:hover{
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 320px) {

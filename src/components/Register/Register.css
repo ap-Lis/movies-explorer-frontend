@@ -1,14 +1,21 @@
 .register{
     display: flex;
     flex-direction: column;
-    max-width: 396px;
+    max-width: 496px;
     width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 50px 0 50px;
 }
 
 .register__logo{
     max-width: 38px;
     margin: 70px 0 40px 0;
+    transition: opacity 1s;
+}
+
+.register__logo:hover{
+    opacity: 0.5;
 }
 
 .register__form{
@@ -78,6 +85,11 @@
     min-height: 45px;
     margin: 69px 0 0 0;
     cursor: pointer;
+    transition: opacity 1s;
+}
+
+.register__submit-button:hover:enabled{
+    opacity: 0.5;
 }
 
 .register__submit-button_type_disabled{
@@ -100,6 +112,11 @@
 .register__redirect{
     color:#FF6838;
     text-decoration: none;
+    transition: opacity 1s;
+}
+
+.register__redirect:hover{
+    opacity: 0.5;
 }
 
 .register__error{
@@ -142,5 +159,9 @@
 
     .register__question{
         font-size: 12px;
+    }
+
+    .register{
+        padding: 0 10px 0 10px;
     }
 }

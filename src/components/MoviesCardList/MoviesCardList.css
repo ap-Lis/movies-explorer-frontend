@@ -7,25 +7,29 @@
 
 .movies-card-list__grid{
     display: grid;
-    grid-template-columns: repeat(4, 270px);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     margin-top: 10px;
-    padding: 70px 70px 30px 70px;
-    max-width: 1140px;
+    max-width: 1240px;
+    width: 100%;
     gap: 32px 20px;
+    box-sizing: border-box;
+    padding: 70px 50px 30px 50px;
 }
 
 @media screen and (max-width: 768px) {
     .movies-card-list__grid{
-        grid-template-columns: repeat(2, 339px);
-        padding: 70px 30px 30px 30px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 70px 15px 30px 15px;
+        max-width: 738px;
     }
 }
 
 @media screen and (max-width: 320px) {
     .movies-card-list__grid{
-        grid-template-columns: repeat(1, 300px);
-        padding: 40px 10px 30px 10px;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 40px 14px 30px 14px;
         gap: 20px 20px;
+        max-width: 320px;
     }
 }

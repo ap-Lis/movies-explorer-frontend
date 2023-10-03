@@ -1,15 +1,23 @@
 .login{
     display: flex;
     flex-direction: column;
-    max-width: 396px;
+    max-width: 496px;
     width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 50px 0 50px;
+    flex-grow: 1;
 }
 
 .login__logo{
     max-width: 38px;
     margin: 70px 0 40px 0;
     display: inline-block;
+    transition: opacity 1s;
+}
+
+.login__logo:hover{
+    opacity: 0.5;
 }
 
 .login__form{
@@ -80,6 +88,11 @@
     margin: 150px 0 0 0;
     padding: 0;
     cursor: pointer;
+    transition: opacity 1s;
+}
+
+.login__submit-button:hover:enabled{
+    opacity: 0.5;
 }
 
 .login__submit-button_type_disabled{
@@ -102,6 +115,11 @@
 .login__redirect{
     color:#FF6838;
     text-decoration: none;
+    transition: opacity 1s;
+}
+
+.login__redirect:hover{
+    opacity: 0.5;
 }
 
 .login__error{
@@ -148,5 +166,9 @@
 
     .login__question{
         font-size: 12px;
+    }
+
+    .login{
+        padding: 0 10px 0 10px;
     }
 }

@@ -51,19 +51,21 @@ function Profile({onLogout}) {
     }
 
     return (
-        <main className="profile">
-            <h2 className='profile__caption'>Привет, Виталий!</h2>
-            <form name="edit" className="profile__form" onSubmit={handleSubmit} noValidate>
-                <label className = "profile__field">Имя
-                    <input className={`profile__input ${handleNameValidation() && `profile__input_color_red`}`} type="name" name="name" id="name-input" value={name} onBlur={e => nameCheck.onBlur(e)} onChange={handleNameChange} disabled={!isEdit}/>
-                </label>
-                <label className = "profile__field">E-mail
-                    <input className={`profile__input ${handleEmailValidation() && `profile__input_color_red`}`} type="email" name="email" id="email-input" value={email} onBlur={e => emailCheck.onBlur(e)} onChange={handleEmailChange} disabled={!isEdit}/>
-                </label>
-                <input className= {`profile__submit-button ${isEdit && `profile__submit-button_type_visible`} ${handleButtonValidation() && `profile__submit-button_type_disabled`}`} type="submit" value="Сохранить" disabled={handleButtonValidation()} />
-                <button className={`profile__edit-button ${isEdit && `profile__edit-button_type_hidden`}`} type="button" aria-label="Редактировать" onClick={toggleEditMode}>Редактировать</button>
-                <button className={`profile__logout-button ${isEdit && `profile__logout-button_type_hidden`}`} type="button" onClick={handleLogout} aria-label="Выйти">Выйти из аккаунта</button>
-            </form>
+        <main>
+            <section className="profile">
+                <h1 className='profile__caption'>Привет, Виталий!</h1>
+                <form name="edit" className="profile__form" onSubmit={handleSubmit} noValidate>
+                    <label className = "profile__field">Имя
+                        <input className={`profile__input ${handleNameValidation() ? `profile__input_color_red` : ``}`} type="name" name="name" id="name-input" value={name} onBlur={e => nameCheck.onBlur(e)} onChange={handleNameChange} disabled={!isEdit} placeholder='Терентий'/>
+                    </label>
+                    <label className = "profile__field">E-mail
+                        <input className={`profile__input ${handleEmailValidation() ? `profile__input_color_red` : ``}`} type="email" name="email" id="email-input" value={email} onBlur={e => emailCheck.onBlur(e)} onChange={handleEmailChange} disabled={!isEdit} placeholder='tereha@mail.ru'/>
+                    </label>
+                    <input className= {`profile__submit-button ${isEdit ? `profile__submit-button_type_visible` : ``} ${handleButtonValidation() ? `profile__submit-button_type_disabled` : ``}`} type="submit" value="Сохранить" disabled={handleButtonValidation()} />
+                    <button className={`profile__edit-button ${isEdit ? `profile__edit-button_type_hidden` : ``}`} type="button" aria-label="Редактировать" onClick={toggleEditMode}>Редактировать</button>
+                    <button className={`profile__logout-button ${isEdit ? `profile__logout-button_type_hidden` : ``}`} type="button" onClick={handleLogout} aria-label="Выйти">Выйти из аккаунта</button>
+                </form>
+            </section>
         </main>
     );
   }
