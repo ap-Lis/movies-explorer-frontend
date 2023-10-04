@@ -1,0 +1,166 @@
+.about-project{
+    min-height: 608px;
+    height: 100%;
+    width: 100%;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 110px 50px 0 50px;
+    box-sizing: border-box;
+}
+
+.about-project__description{
+    margin: 70px 0 0 0;
+    display: flex;
+    max-width: 1140px;
+    width: 100%;
+    gap: 26px;
+}
+
+.about-project__description-container{
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.about-project__description-caption{
+    margin: 0;
+    color: #000;
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    max-width: 550px;
+    width: 100%;
+}
+
+.about-project__description-text{
+    margin: 0;
+    color: #000;
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.progress{
+    display: flex;
+    max-width: 1140px;
+    width: 100%;
+    justify-content: stretch;
+    margin-top: 110px;
+}
+
+.progress__backend{
+    max-width: 228px;
+    width: 100%;
+    min-width: none;-height: 72px;
+    height: 100%;
+}
+
+.progress__frontend{
+    max-width: 912px;
+    width: 100%;
+    text-align: center;
+}
+
+.progress__period{
+    margin: 0;
+    color: #000;
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 36px;
+}
+
+.progress__period_type_highlighted{
+    background-color: #2BE080;
+}
+
+.progress__name{
+    margin: 0;
+    color: #A0A0A0;
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+    min-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .about-project{
+        max-width: 768px;
+        padding-top: 90px;
+        min-height: 585px;
+    }
+
+    .progress{
+        margin-top: 85px;
+    }
+
+    .progress__backend{
+        max-width: 140px;
+    }
+
+    .about-project__description-text{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-project{
+        max-width: 320px;
+        padding: 70px 17px 0 17px;
+    }
+
+    .about-project__description{
+        flex-direction: column;
+        margin: 60px 0 0 0;
+        gap: 60px;
+    }
+
+    .about-project__description-caption{
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+
+    .about-project__description-text{
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about-project__description-container{
+        gap: 16px;
+    }
+    
+    .progress{
+        margin-top: 60px;
+    }
+
+    .progress__backend{
+        max-width: 100px;
+    }
+
+    .progress__period{
+        font-size: 11px;
+    }
+
+    .progress__name{
+        font-size: 11px;
+    }
+}

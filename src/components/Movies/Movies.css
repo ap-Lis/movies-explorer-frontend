@@ -1,0 +1,44 @@
+.movies{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.movies__more-button{
+    padding: 0;
+    border: 0;
+    max-width: 1140px;
+    width: calc(100% - 50px);
+    min-height: 36px;
+    border-radius: 6px;
+    background: #F9F9F9;
+    color: #000;
+    text-align: center;
+    font-family: "Inter", "Arial", "Helvetica", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+    margin: 50px 0 80px 0;
+    transition: opacity 1s;
+}
+
+.movies__more-button:hover{
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+    .movies__more-button{
+        max-width: 768px;
+        width: calc(100% - 30px);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .movies__more-button{
+        max-width: 320px;
+        width: calc(100% - 20px);
+    }
+}
