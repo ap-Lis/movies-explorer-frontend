@@ -56,7 +56,7 @@ function Profile({onLogout}) {
                 <h1 className='profile__caption'>Привет, Виталий!</h1>
                 <form name="edit" className="profile__form" onSubmit={handleSubmit} noValidate>
                     <label className = "profile__field">Имя
-                        <input className={`profile__input ${handleNameValidation() ? `profile__input_color_red` : ``}`} type="name" name="name" id="name-input" value={name} onBlur={e => nameCheck.onBlur(e)} onChange={handleNameChange} disabled={!isEdit} placeholder='Терентий'/>
+                        <input className={`profile__input ${handleNameValidation() ? `profile__input_color_red` : ``}`} type="text" name="name" id="name-input" value={name} onBlur={e => nameCheck.onBlur(e)} onChange={handleNameChange} disabled={!isEdit} placeholder='Терентий'/>
                     </label>
                     <label className = "profile__field">E-mail
                         <input className={`profile__input ${handleEmailValidation() ? `profile__input_color_red` : ``}`} type="email" name="email" id="email-input" value={email} onBlur={e => emailCheck.onBlur(e)} onChange={handleEmailChange} disabled={!isEdit} placeholder='tereha@mail.ru'/>

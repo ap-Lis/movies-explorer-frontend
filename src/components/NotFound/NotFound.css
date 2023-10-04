@@ -44,6 +44,11 @@
     cursor: pointer;
     padding: 0;
     align-self: center;
+    transition: opacity 1s;
+}
+
+.not-found__return:hover{
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 768px) {

@@ -18,7 +18,7 @@ function MoviesCard({card, onCardLike, savedCards, onCardDelete }) {
     }
 
     return (
-        <div className="movies-card">
+        <li className="movies-card">
             <img className="movies-card__img" alt={card.nameRU} src={card.image}/>
             <div className='movies-card__container'>
                 <h2 className='movies-card__caption'>{card.nameRU}</h2>
@@ -28,10 +28,9 @@ function MoviesCard({card, onCardLike, savedCards, onCardDelete }) {
                         :
                         <button className="movies-card__delete-button" type="button" aria-label="Удалить" onClick={handleCardDelete} />
                 }
-                
             </div>
             <p className='movies-card__duration'>{Math.trunc(card.duration/60)+`ч`+(card.duration%60)+`м`}</p>
-        </div>
+        </li>
     );
   }
   
