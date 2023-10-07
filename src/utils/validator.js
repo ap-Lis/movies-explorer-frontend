@@ -1,76 +1,28 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-const useValidation = (value, validations) => {
-    const [isEmpty, setIsEmpty] = React.useState(true);
-    const [minLengthError, setMinLengthError] = React.useState(false);
-    const [maxLengthError, setMaxLengthError] = React.useState(false);
-    const [inputValid, setInputValid] = React.useState(false);
-    const [emailError, setEmailError] = React.useState(false);
+//хук управления формой и валидации формы
+export function useFormWithValidation() {
+  const [values, setValues] = React.useState({});
+  const [errors, setErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState(false);
 
-    React.useEffect(() => {
-        for (const validation in validations) {
-            switch (validation) {
-                case 'isEmpty':
-                    value ? setIsEmpty(false) : setIsEmpty(true);
-                break;
-                case 'minLength':
-                    value.length < validations[validation] ? setMinLengthError(true) : setMinLengthError(false);
-                break;
-                case 'maxLength':
-                    value.length > validations[validation] ? setMaxLengthError(true) : setMaxLengthError(false);
-                break;
-                case 'isEmail':
-                    setEmailError(!/\S+@\S+\.\S+/.test(value));
-                break;
-                default:
-                break;
-            }
-        }
-    }, [value, validations])
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    setValues({...values, [name]: value});
+    setErrors({...errors, [name]: target.validationMessage });
+    setIsValid(target.closest("form").checkValidity());
+  };
 
-    React.useEffect(() => {
-        if (isEmpty || minLengthError || emailError || maxLengthError) {
-            setInputValid(true);
-        } else {
-            setInputValid(false);
-        }
+  const resetForm = useCallback(
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
+      setValues(newValues);
+      setErrors(newErrors);
+      setIsValid(newIsValid);
+    },
+    [setValues, setErrors, setIsValid]
+  );
 
-    }, [
-        isEmpty,
-        minLengthError,
-        maxLengthError,
-        emailError,
-    ])
-
-    return {
-        isEmpty,
-        minLengthError,
-        maxLengthError,
-        emailError,
-        inputValid
-    }
+  return { values, handleChange, errors, isValid, resetForm, setValues };
 }
-
-const useInput = (initialValue, validations) => {
-    const [value, setValue] = React.useState(initialValue);
-    const [isDirty, setIsDirty] = React.useState(false);
-    const valid = useValidation(value, validations);
-
-    const onChange = (e) => {
-        setValue(e.target.value);
-    }
-
-    const onBlur = () => {
-        setIsDirty(true);
-    }
-
-    return {
-        value,
-        onChange,
-        onBlur,
-        isDirty,
-        ...valid
-    }
-}
-
-export { useInput };

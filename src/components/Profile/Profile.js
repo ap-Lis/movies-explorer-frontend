@@ -1,68 +1,48 @@
 import React from 'react';
 import './Profile.css'
-import { useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import {useFormWithValidation} from '../../utils/validator';
 
-import { useInput } from '../../utils/validator';
-
-function Profile({onLogout}) {
-    const navigate = useNavigate();
-
-    const [name, setName] = React.useState('Виталий');
-    const [email, setEmail] = React.useState('pochta@yandex.ru');
-    const [isEdit, setIsEdit] = React.useState(false);
-
-    const nameCheck = useInput('Виталий', {isEmpty: true, minLength: 2, maxLength: 40 });
-    const emailCheck = useInput('pochta@yandex.ru', {isEmpty: true, minLength: 2, maxLength: 40, isEmail: true});
+function Profile({onLogout, onUpdateUser, onError, isEdit, onEdit}) {
+    const currentUser = React.useContext(CurrentUserContext);
+    const {values, handleChange, errors, isValid, setValues} = useFormWithValidation();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        toggleEditMode();
+        onUpdateUser({
+              name: values.name,
+              email: values.email,
+        });
     }
 
     function handleLogout() {
         onLogout();
-        navigate("/");
     }
 
-    function handleNameChange(e) {
-        nameCheck.onChange(e);
-        setName(e.target.value);
+    function handleOriginValues() {
+        return (currentUser.name === values.name && currentUser.email === values.email)
     }
 
-    function handleEmailChange(e) {
-        emailCheck.onChange(e);
-        setEmail(e.target.value);
-    }
-
-    function toggleEditMode() {
-        setIsEdit(!isEdit);
-    }
-
-    function handleNameValidation() {
-        return (nameCheck.isEmpty || nameCheck.minLengthError || nameCheck.maxLengthError);
-    }
-
-    function handleEmailValidation() {
-        return (emailCheck.isEmpty || emailCheck.minLengthError || emailCheck.emailError || emailCheck.maxLengthError);
-    }
-
-    function handleButtonValidation() {
-        return (handleEmailValidation() || handleNameValidation());
-    }
+    React.useEffect(() => {
+        setValues(currentUser);
+    }, [currentUser, setValues]);
 
     return (
         <main>
             <section className="profile">
-                <h1 className='profile__caption'>Привет, Виталий!</h1>
-                <form name="edit" className="profile__form" onSubmit={handleSubmit} noValidate>
+                <h1 className='profile__caption'>Привет, {currentUser.name}!</h1>
+                <form name="edit" className="profile__form" onSubmit={handleSubmit}>
                     <label className = "profile__field">Имя
-                        <input className={`profile__input ${handleNameValidation() ? `profile__input_color_red` : ``}`} type="text" name="name" id="name-input" value={name} onBlur={e => nameCheck.onBlur(e)} onChange={handleNameChange} disabled={!isEdit} placeholder='Терентий'/>
+                        <input className='profile__input' type="text" name="name" id="name-input" value={values.name || ''} disabled={!isEdit} placeholder='Терентий' onChange={handleChange} onBlur={handleOriginValues} required minLength="2" maxLength="30"/>
+                        <span className="profile__error" >{errors.name}</span>
                     </label>
                     <label className = "profile__field">E-mail
-                        <input className={`profile__input ${handleEmailValidation() ? `profile__input_color_red` : ``}`} type="email" name="email" id="email-input" value={email} onBlur={e => emailCheck.onBlur(e)} onChange={handleEmailChange} disabled={!isEdit} placeholder='tereha@mail.ru'/>
+                        <input className='profile__input' type="email" name="email" id="email-input" value={values.email || ''} disabled={!isEdit} placeholder='tereha@mail.ru' onChange={handleChange} required pattern="([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9])+([A-Za-z0-9]{2,4})?" minLength="2" maxLength="30"/>
+                        <span className="profile__error" >{errors.email}</span>
                     </label>
-                    <input className= {`profile__submit-button ${isEdit ? `profile__submit-button_type_visible` : ``} ${handleButtonValidation() ? `profile__submit-button_type_disabled` : ``}`} type="submit" value="Сохранить" disabled={handleButtonValidation()} />
-                    <button className={`profile__edit-button ${isEdit ? `profile__edit-button_type_hidden` : ``}`} type="button" aria-label="Редактировать" onClick={toggleEditMode}>Редактировать</button>
+                    <span className="profile__error profile__error_type_server">{onError}</span>
+                    <input className= {`profile__submit-button ${isEdit ? `profile__submit-button_type_visible` : ``}`} type="submit" value="Сохранить" disabled={handleOriginValues() || !isValid}/>
+                    <button className={`profile__edit-button ${isEdit ? `profile__edit-button_type_hidden` : ``}`} type="button" aria-label="Редактировать" onClick={onEdit}>Редактировать</button>
                     <button className={`profile__logout-button ${isEdit ? `profile__logout-button_type_hidden` : ``}`} type="button" onClick={handleLogout} aria-label="Выйти">Выйти из аккаунта</button>
                 </form>
             </section>
