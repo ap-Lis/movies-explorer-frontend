@@ -77,11 +77,10 @@ function App() {
   React.useEffect(()=>{
     if(token){
       setIsLoading(true);
-      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies(), moviesApi.getMovies()])
-        .then(([info, savedMovies, movies])=>{
+      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
+        .then(([info, savedMovies, ])=>{
           setCurrentUser(info);
           setSavedMovies(savedMovies.data);
-          setBeatMovies(movies);
         })
         .catch((err)=>{console.log(err);})
         .finally(() => {setIsLoading(false)});
@@ -89,6 +88,7 @@ function App() {
   }, [token])
 
   function handleLogin(userInfo) {
+    localStorage.clear();
     mainApi.login(userInfo).then((res)=>{
       localStorage.setItem('jwt', res.token);
       setIsLoggedIn(true);
@@ -168,10 +168,9 @@ function App() {
   }
 
   function clearUserInfo() {
-    setIsLoggedIn(false);
-    localStorage.clear();
     clearStates();
     navigate('/');
+    localStorage.clear();
   }
 
   function clearStates(){
@@ -183,6 +182,7 @@ function App() {
     setIsShort(false);
     setSearchQuery('');
     setIsLoggedIn(false);
+    setBeatMovies(null);
   }
 
   const filterArray = (movies, searchValue, shortValue) => {
@@ -213,11 +213,21 @@ function App() {
 
   React.useEffect(()=>{
     if(isLoggedIn) {
-      localStorage.setItem('isShort', isShort);
-      localStorage.setItem('searchQuery', searchQuery);
-      setFilteredMovies(filterArray(beatMovies, searchQuery, isShort));
+      if('beatMovies' in localStorage) {
+        localStorage.setItem('isShort', isShort);
+        localStorage.setItem('searchQuery', searchQuery);
+        setFilteredMovies(filterArray(beatMovies, searchQuery, isShort));
+      }
     }
   }, [isLoggedIn, isShort, searchQuery, beatMovies]);
+
+  React.useEffect(()=>{
+      moviesApi.getMovies()
+          .then((res)=>{
+            setBeatMovies(res);
+            localStorage.setItem('beatMovies', JSON.stringify(res));
+          })
+  }, [searchQuery])
 
   React.useEffect(()=>{
     setFilteredSavedMovies(filterArray(savedMovies, searchSavedQuery, isSavedShort));

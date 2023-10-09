@@ -101,6 +101,7 @@
 
 .profile__error_type_greeting{
     color: #07ac1d;
+    text-align: center;
 }
 
 .profile__submit-button:hover:enabled{
