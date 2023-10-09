@@ -61,7 +61,7 @@
     opacity: 0.5;
 }
 
-.search-form__submit-button_type_disabled{
+.search-form__submit-button:disabled{
     background-color: #929292;
     cursor: default;
 }

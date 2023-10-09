@@ -6,7 +6,7 @@ import { useFormWithValidation } from '../../utils/validator';
 
 import logo from '../../images/icons/logo.svg'
 
-function Register({onRegister, onError}) {
+function Register({onRegister, onError, setOnError }) {
 
     const {values, handleChange, errors, isValid} = useFormWithValidation();
 
@@ -14,6 +14,8 @@ function Register({onRegister, onError}) {
         onRegister(values);
         e.preventDefault();
     }
+
+    React.useEffect(()=>{setOnError('')},[setOnError])
 
     return (
         <main className="register">

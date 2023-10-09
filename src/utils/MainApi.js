@@ -66,3 +66,37 @@ export const setUserInfo = (info) => {
     })
     .then(getOkOrNot);
 }
+
+export const postMovie = (info) => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'POST',
+    headers: {
+        "Authorization" : setToken(),
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(info)
+})
+.then(getOkOrNot);
+}
+
+export const getSavedMovies = () => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'GET',
+    headers: {
+        "Authorization" : setToken(),
+        'Content-Type': 'application/json'
+    }
+  })
+  .then(getOkOrNot);
+}
+
+export const deleteMovie = (info) => {
+  return fetch(`${BASE_URL}/movies/${info}`, {
+      method: 'DELETE',
+      headers: {
+          "Authorization" : setToken(),
+          'Content-Type': 'application/json'
+      },
+  })
+  .then(getOkOrNot);
+}

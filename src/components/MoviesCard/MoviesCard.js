@@ -2,12 +2,12 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css'
 
-function MoviesCard({card, onCardLike, savedCards, onCardDelete }) {
+function MoviesCard({card, onCardLike, savedMovies, onCardDelete }) {
 
     const location = useLocation();
     const isMovies = location.pathname === '/movies';
 
-    const isLiked = savedCards ? savedCards.some((movie) => movie.movieId === card.movieId) : false;
+    const isLiked = savedMovies ? savedMovies.some((movie) => movie.movieId === card.movieId) : false;
 
     const handleCardLike = () => {
         onCardLike(card);
@@ -19,7 +19,7 @@ function MoviesCard({card, onCardLike, savedCards, onCardDelete }) {
 
     return (
         <li className="movies-card">
-            <img className="movies-card__img" alt={card.nameRU} src={card.image}/>
+            <a href={card.trailerLink} target='blank'><img className="movies-card__img" alt={card.nameRU} src={card.image}/></a>
             <div className='movies-card__container'>
                 <h2 className='movies-card__caption'>{card.nameRU}</h2>
                 {

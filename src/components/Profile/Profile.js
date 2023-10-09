@@ -3,7 +3,7 @@ import './Profile.css'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {useFormWithValidation} from '../../utils/validator';
 
-function Profile({onLogout, onUpdateUser, onError, isEdit, onEdit}) {
+function Profile({onLogout, onUpdateUser, message, setMessage, isEdit, onEdit, isGreeting }) {
     const currentUser = React.useContext(CurrentUserContext);
     const {values, handleChange, errors, isValid, setValues} = useFormWithValidation();
 
@@ -18,6 +18,8 @@ function Profile({onLogout, onUpdateUser, onError, isEdit, onEdit}) {
     function handleLogout() {
         onLogout();
     }
+
+    React.useEffect(()=>{setMessage('')},[setMessage])
 
     function handleOriginValues() {
         return (currentUser.name === values.name && currentUser.email === values.email)
@@ -40,7 +42,7 @@ function Profile({onLogout, onUpdateUser, onError, isEdit, onEdit}) {
                         <input className='profile__input' type="email" name="email" id="email-input" value={values.email || ''} disabled={!isEdit} placeholder='tereha@mail.ru' onChange={handleChange} required pattern="([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9])+([A-Za-z0-9]{2,4})?" minLength="2" maxLength="30"/>
                         <span className="profile__error" >{errors.email}</span>
                     </label>
-                    <span className="profile__error profile__error_type_server">{onError}</span>
+                    <span className={`profile__error profile__error_type_server ${isGreeting ? `profile__error_type_greeting`:``}`}>{message}</span>
                     <input className= {`profile__submit-button ${isEdit ? `profile__submit-button_type_visible` : ``}`} type="submit" value="Сохранить" disabled={handleOriginValues() || !isValid}/>
                     <button className={`profile__edit-button ${isEdit ? `profile__edit-button_type_hidden` : ``}`} type="button" aria-label="Редактировать" onClick={onEdit}>Редактировать</button>
                     <button className={`profile__logout-button ${isEdit ? `profile__logout-button_type_hidden` : ``}`} type="button" onClick={handleLogout} aria-label="Выйти">Выйти из аккаунта</button>

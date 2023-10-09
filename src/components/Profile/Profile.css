@@ -99,6 +99,10 @@
     margin: 208px 0 16px 0
 }
 
+.profile__error_type_greeting{
+    color: #07ac1d;
+}
+
 .profile__submit-button:hover:enabled{
     opacity: 0.5;
 }
