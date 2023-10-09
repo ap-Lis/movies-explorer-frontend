@@ -27,7 +27,7 @@ function Register({onRegister, onError, setOnError }) {
                     <span className="register__error">{errors.name}</span>
                 </label>
                 <label className = "register__field">E-mail
-                    <input className='register__input' onChange={handleChange} type="email" name="email" id="email-input" placeholder='efim@mail.ru' value={values.email || ''} required pattern="([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9])+([A-Za-z0-9]{2,4})?" minLength="2" maxLength="30"/>
+                    <input className='register__input' onChange={handleChange} type="email" name="email" id="email-input" placeholder='efim@mail.ru' value={values.email || ''} required pattern="^.+@.+\..+$" minLength="2" maxLength="30"/>
                     <span className="register__error">{errors.email}</span>
                 </label>
                 <label className = "register__field">Пароль

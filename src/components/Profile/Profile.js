@@ -39,7 +39,7 @@ function Profile({onLogout, onUpdateUser, message, setMessage, isEdit, onEdit, i
                         <span className="profile__error" >{errors.name}</span>
                     </label>
                     <label className = "profile__field">E-mail
-                        <input className='profile__input' type="email" name="email" id="email-input" value={values.email || ''} disabled={!isEdit} placeholder='tereha@mail.ru' onChange={handleChange} required pattern="([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9])+([A-Za-z0-9]{2,4})?" minLength="2" maxLength="30"/>
+                        <input className='profile__input' type="email" name="email" id="email-input" value={values.email || ''} disabled={!isEdit} placeholder='tereha@mail.ru' onChange={handleChange} required pattern="^.+@.+\..+$" minLength="2" maxLength="30"/>
                         <span className="profile__error" >{errors.email}</span>
                     </label>
                     <span className={`profile__error profile__error_type_server ${isGreeting ? `profile__error_type_greeting`:``}`}>{message}</span>

@@ -23,7 +23,7 @@ function Login({onLogin, onError, setOnError}) {
             <h1 className="login__title">Рады видеть!</h1>
             <form name="login" className="login__form" onSubmit={handleSubmit}>
                 <label className = "login__field">E-mail
-                    <input className={`login__input`} value={values.email || ''} onChange={handleChange} type="email" name="email" minLength="2" maxLength="30" id="email-input" placeholder='petk@mail.ru' required pattern="([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9])+([A-Za-z0-9])?"/>
+                    <input className={`login__input`} value={values.email || ''} onChange={handleChange} type="email" name="email" minLength="2" maxLength="30" id="email-input" placeholder='petk@mail.ru' required pattern="^.+@.+\..+$"/>
                     <span className="login__error">{errors.email}</span>
                 </label>
                 <label className = "login__field">Пароль
