@@ -222,12 +222,14 @@ function App() {
   }, [isLoggedIn, isShort, searchQuery, beatMovies]);
 
   React.useEffect(()=>{
+    if(!beatMovies && searchQuery.length !== 0) {
       moviesApi.getMovies()
           .then((res)=>{
             setBeatMovies(res);
             localStorage.setItem('beatMovies', JSON.stringify(res));
           })
-  }, [searchQuery])
+    }
+  }, [searchQuery, beatMovies])
 
   React.useEffect(()=>{
     setFilteredSavedMovies(filterArray(savedMovies, searchSavedQuery, isSavedShort));
