@@ -1,8 +1,6 @@
 # Проект: movies-exlorer-frontend
 
-**Проект**  
-Диплом. Верстка.
-
+**Диплом**  
 Выбранный макет: light-2
 
 https://ap-final.nomoredomain.nomoredomainsrocks.ru/movies
