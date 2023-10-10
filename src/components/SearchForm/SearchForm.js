@@ -1,28 +1,33 @@
 import React from 'react';
 import './SearchForm.css'
 
-import { useInput } from '../../utils/validator';
-
-function SearchForm() {
+function SearchForm({onSubmit, searchInput, setSearchInput, setIsShort, isShort }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        onSubmit(searchInput);
     }
 
-    const search = useInput('', {isEmpty: true, minLength: 3, maxLength: 80});
+    const handleTextChange = (e) => {
+        setSearchInput(e.target.value);
+    }
 
-    function handleSearchValidation() {
-        return (search.isEmpty || search.minLengthError || search.maxLengthError);
+    const handleCheckChange = (e) => {
+        setIsShort(!isShort);
+    }
+
+    const handleButtonCheck = () => {
+       return searchInput.length === 0;
     }
 
     return (
         <section className='search' aria-label='поиск'>
-            <form name="search-form" className="search-form" onSubmit={handleSubmit} noValidate>
-                <input className={`search-form__input ${handleSearchValidation() ? `search-form__input_color_red` : ``}`} type="text" name="query" id="query-input" placeholder="Фильм" onChange={e => search.onChange(e)} onBlur={e => search.onBlur(e)} />
-                <input className={`search-form__submit-button ${handleSearchValidation() ? `search-form__submit-button_type_disabled` : ``}`} type="submit" value="" disabled={handleSearchValidation()}/>
+            <form name="search-form" className="search-form" onSubmit={handleSubmit} >
+                <input className='search-form__input' type="text" name="query" id="query-input" placeholder="Фильм" value={searchInput} onChange={handleTextChange} required/>
+                <input className= 'search-form__submit-button' type="submit" value="" disabled={handleButtonCheck()}/>
                 <div className='search-form__switch-container'>
                     <label className="search-form__switch">
-                        <input name="search-checkbox" className="search-form__checkbox" type="checkbox" />
+                        <input name="search-checkbox" className="search-form__checkbox" type="checkbox" checked={isShort} onChange={handleCheckChange} />
                         <span className="search-form__slider round"></span>
                     </label>
                     <span className="search-form__checkbox-label">Короткометражки</span>

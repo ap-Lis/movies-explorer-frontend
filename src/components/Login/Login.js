@@ -1,49 +1,37 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login.css'
 
-import { useInput } from '../../utils/validator';
+import { useFormWithValidation } from '../../utils/validator'
 
 import logo from '../../images/icons/logo.svg'
 
-function Login({onLogin}) {
+function Login({onLogin, onError, setOnError}) {
 
-    const navigate = useNavigate();
+    const {values, handleChange, errors, isValid} = useFormWithValidation();
 
     const handleSubmit = (e) => {
-        onLogin();
         e.preventDefault();
-        navigate("/");
+        onLogin(values);
     }
 
-    const email = useInput('', {isEmpty: true, minLength: 2, maxLength: 40, isEmail: true});
-    const password = useInput('', {isEmpty: true, minLength: 2, maxLength: 40});
-
-    function handleEmailValidation() {
-        return (email.isEmpty || email.minLengthError || email.emailError || email.maxLengthError);
-    }
-
-    function handlePasswordValidation() {
-        return (password.isEmpty || password.minLengthError || password.maxLengthError );
-    }
-
-    function handleButtonValidation() {
-        return (handleEmailValidation() || handlePasswordValidation());
-    }
+    React.useEffect(()=>{setOnError('')},[setOnError])
 
     return (
         <main className="login">
             <Link className="login__logo" to="/"><img src={logo} alt = "лого" /></Link>
             <h1 className="login__title">Рады видеть!</h1>
-            <form name="login" className="login__form" onSubmit={handleSubmit} noValidate>
+            <form name="login" className="login__form" onSubmit={handleSubmit}>
                 <label className = "login__field">E-mail
-                    <input className={`login__input ${handleEmailValidation() ? `login__input_color_red` : ``}`} value={email.value} onChange={e => email.onChange(e)} onBlur={e => email.onBlur(e)} type="email" name="email" id="email-input" placeholder='petk@mail.ru' />
+                    <input className={`login__input`} value={values.email || ''} onChange={handleChange} type="email" name="email" minLength="2" maxLength="30" id="email-input" placeholder='petk@mail.ru' required pattern="^.+@.+\..+$"/>
+                    <span className="login__error">{errors.email}</span>
                 </label>
                 <label className = "login__field">Пароль
-                    <input className={`login__input ${handlePasswordValidation() ? `login__input_color_red` : ``}`} value={password.value} onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} type="password" name="password" id="password-input" placeholder='**********'/>
-                    <span className="login__error" id="login-password-input-error">Что-то пошло не так...</span>
+                    <input className={`login__input`} value={values.password || ''} onChange={handleChange} type="password" name="password" id="password-input" placeholder='**********' required minLength="2" maxLength="30"/>
+                    <span className="login__error">{errors.password}</span>
                 </label>
-                <input className={`login__submit-button ${handleButtonValidation() ? `login__submit-button_type_disabled` : ``}`} type="submit" value="Войти" disabled={email.inputValid}/>
+                <span className="login__error login__error_type_server">{onError}</span>
+                <input className='login__submit-button' type="submit" value="Войти" disabled={!isValid}/>
                 <p className='login__question'>Ещё не зарегистрированы? <Link className='login__redirect' to="/signup">Регистрация</Link></p>
             </form>
         </main>

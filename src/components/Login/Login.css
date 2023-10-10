@@ -45,6 +45,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    min-height: 104px;
 }
 
 .login__input{
@@ -85,7 +86,6 @@
     font-weight: 500;
     line-height: normal;
     min-height: 45px;
-    margin: 150px 0 0 0;
     padding: 0;
     cursor: pointer;
     transition: opacity 1s;
@@ -95,7 +95,7 @@
     opacity: 0.5;
 }
 
-.login__submit-button_type_disabled{
+.login__submit-button:disabled{
     background: #F8F8F8;
     cursor: default;
 }
@@ -131,14 +131,19 @@
     line-height: normal;
 }
 
+.login__error_type_server{
+    margin: 138px 0 0 0;
+    min-height: 24px;
+}
+
 @media screen and (max-width: 768px) {
     .login__logo{
         max-width: 38px;
         margin: 230px 0 40px 0;
     }
 
-    .login__submit-button{
-        margin: 155px 0 0 0;
+    .login__error_type_server{
+        margin: 143px 0 0 0;
     }
 }
 
@@ -160,8 +165,8 @@
         align-self: center;
     }
 
-    .login__submit-button{
-        margin: 243px 0 0 0;
+    .login__error_type_server{
+        margin: 231px 0 0 0;
     }
 
     .login__question{
